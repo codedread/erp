@@ -6,7 +6,7 @@ so that it can't be guessed...
 
 ... but how far could we get generating random phrases of English words?
 
-The goal is random phrase picked from a large list of english words between 3-8 characters long,
+The goal is a random phrase picked from a large list of english words between 3-8 characters long,
 none of which have homonyms. This will allow the phrase to easily be said verbally to a person
 such that they might be able to remember it, but also extremely likely to be unique.
 
@@ -19,6 +19,6 @@ such that they might be able to remember it, but also extremely likely to be uni
 
 ## The Phrase
 
-  * For now, it is unclear how long the phrase needs to be to match 128-bits of randomness.
-    But I think an ideal spot is between 3 and 5 words long.
+  * For now, it is unclear how long the word list and phrase needs to be to match 122-bits
+    of randomness, but I think an ideal spot is between 3 and 5 words long.
   * Duplicate words should be allowed.
