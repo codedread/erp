@@ -26,7 +26,11 @@ function getAbbreviatedNum(n: number): string {
   }
   // Quadrillions (Qa)
   else if (n < 1_000_000_000_000_000_000) {
-    return `${Math.floor(n / 10_000_000_000_00) / 100}Qa`;
+    return `${Math.floor(n / 10_000_000_000_000) / 100}Qa`;
+  }
+  // Quintillions (Qi)
+  else if (n < 1_000_000_000_000_000_000_000) {
+    return `${Math.floor(n / 10_000_000_000_000_000) / 100}Qi`;
   }
   return `${n}`;
 }
