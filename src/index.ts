@@ -40,9 +40,64 @@ function getAbbreviatedNum(n: number): string {
   return `${n}`;
 }
 
+// TODO: To properly encode a trie in minimal memory, should use a Uint8Array... Note
+// that because of our unique problem space, the max # of children for a node is 26
+// (so 5-bit keys in the children map), so a single 32-bit value can store which children
+// a given node has as well as whether it is an ending character.
+//
+// Optimized node cost:
+// - 4 bytes for flags (is-last + which children)
+// - 4 bytes for parent (32-bit pointer)
+// - 4 bytes for _each_ child (32-bit pointer)
+interface Node {
+  children?: Map<string, Node>;
+  isLastChar: boolean;
+  parent: Node;
+}
+
+let root: Node = {isLastChar: false, parent: null};
+let leaves: Node[] = [];
+let numNodes = 1;
+
+/** Returns the number of bytes added to memory for this word. */
+function addWordToNode(word: string, node: Node): number {
+  const ch = word[0];
+  const isLastChar = word.length === 1;
+  let memBytes = 0;
+
+  if (!node.children) {
+    node.children = new Map<string, Node>();
+  }
+  if (!node.children.has(ch)) {
+    node.children.set(ch, {parent: node, isLastChar});
+    numNodes++;
+    memBytes += 12; // Parent pointer + Flags + Child-for-parent pointer
+  }
+  let chNode = node.children.get(ch);
+  if (!isLastChar) {
+    memBytes += addWordToNode(word.slice(1), chNode);
+  } else {
+    chNode.isLastChar = true;
+    leaves.push(chNode);
+  }
+  return memBytes;
+}
+
 function go() {
   const buffer = fs.readFileSync('words.json');
   const words: string[] = JSON.parse(buffer.toString());
+
+  // Goofy memory calculations:
+  if (!false) {
+    let wordListMemInBytes = 0;
+    let trieMemInBytes = 0;
+    for (const w of words) {
+      wordListMemInBytes += w.length + 1;
+      trieMemInBytes += addWordToNode(w, root);
+    }
+    console.log(`\nFlat word list takes up ${wordListMemInBytes} bytes.`);
+    console.log(`Trie has ${numNodes} nodes and would take up ${trieMemInBytes} bytes.\n`);
+  }
 
   const totalWords = words.length;
   const equivalentBits = Math.log2(totalWords);

@@ -19,11 +19,11 @@ such that they might be able to remember it, but also extremely likely to be uni
 
 ## The Phrase
 
-  * For now, it is unclear how long the word list and phrase needs to be to match 122-bits
-    of randomness, but I think an ideal spot is between 3 and 5 words long.
-  * Duplicate words should be allowed.
+  * For now, it is unclear how long the word list and phrase needs to be if we want 122-bits
+    of randomness, but I think an ideal spot for memory is between 3 and 5 words long.
+  * Duplicate words are allowed.
 
-  * Examples:
+  * Results:
     * For a phrase of length 1, there are 380 unique phrases. (~8 bits). Example phrase: program
     * For a phrase of length 2, there are 144k unique phrases. (~17 bits). Example phrase: magic-ulcer
     * For a phrase of length 3, there are 54.87M unique phrases. (~25 bits). Example phrase: even-ankle-scary
