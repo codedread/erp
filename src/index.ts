@@ -84,7 +84,7 @@ function addWordToNode(word: string, node: Node): number {
 }
 
 function go() {
-  const buffer = fs.readFileSync('words.json');
+  const buffer = fs.readFileSync('dict/words.en.json');
   const words: string[] = JSON.parse(buffer.toString());
 
   // Goofy memory calculations:
