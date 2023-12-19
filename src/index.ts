@@ -1,5 +1,10 @@
 import * as fs from 'fs';
 
+// TODO: Build a trie to store the words?
+// TODO: Investigate whether N word phrases should look more like sentences.
+//       (this would obv reduce the # of combinations, since only words of
+//        certain could fill each slot).
+
 function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
 }
@@ -50,8 +55,8 @@ function go() {
       examplePhraseWords.push(words[getRandomInt(totalWords)]);
     }
 
-    console.log(`For a phrase of length ${numWordsInPhrase}, there are ${numUniquePhrases} unique phrases. `
-       + `This is the equivalent of ${numBitsForPhrase} bits of information. Example phrase: ${examplePhraseWords.join('-')}`);
+    console.log(`    * For a phrase of length ${numWordsInPhrase}, there are ${numUniquePhrases} unique phrases. `
+       + `(~${numBitsForPhrase} bits). Example phrase: ${examplePhraseWords.join('-')}`);
     ++numWordsInPhrase;
   }
 }
