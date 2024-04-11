@@ -24,10 +24,9 @@ such that they might be able to remember it, but also extremely likely to be uni
   * Duplicate words are allowed.
 
   * Results:
-    * For a phrase of length 1, there are 380 unique phrases. (~8 bits). Example phrase: program
-    * For a phrase of length 2, there are 144k unique phrases. (~17 bits). Example phrase: magic-ulcer
-    * For a phrase of length 3, there are 54.87M unique phrases. (~25 bits). Example phrase: even-ankle-scary
-    * For a phrase of length 4, there are 20.85B unique phrases. (~34 bits). Example phrase: frigid-earth-order-book
-    * For a phrase of length 5, there are 7.92T unique phrases. (~42 bits). Example phrase: villain-cowl-scale-drape-house
-    * For a phrase of length 6, there are 3.01Qa unique phrases. (~51 bits). Example phrase: tower-daft-drink-toast-auction-egg
-    * For a phrase of length 7, there are 1.14Qi unique phrases. (~59 bits). Example phrase: power-soak-ogre-nostril-pill-soak-flank
+    * For a phrase of length 1, there are 452 unique phrases. (~8 bits). Example phrase: fudge
+    * For a phrase of length 2, there are 204k unique phrases. (~17 bits). Example phrase: job-knife
+    * For a phrase of length 3, there are 92.34M unique phrases. (~26 bits). Example phrase: over-cowl-job
+    * For a phrase of length 4, there are 41.74B unique phrases. (~35 bits). Example phrase: even-elf-fluster-sour
+    * For a phrase of length 5, there are 18.86T unique phrases. (~44 bits). Example phrase: blender-own-chin-trance-castle
+    * For a phrase of length 6, there are 8.52Qa unique phrases. (~52 bits). Example phrase: fog-down-spend-butter-junk-lab

@@ -102,7 +102,7 @@ function go() {
   const totalWords = words.length;
   const equivalentBits = Math.log2(totalWords);
   let numWordsInPhrase = 1;
-  while (numWordsInPhrase <= 7) {
+  while (numWordsInPhrase <= 6) {
     const numUniquePhrases = getAbbreviatedNum(totalWords ** numWordsInPhrase);
     const numBitsForPhrase = Math.floor(equivalentBits * numWordsInPhrase);
     let examplePhraseWords: string[] = [];
