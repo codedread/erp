@@ -1,9 +1,6 @@
 import * as fs from 'fs';
 
 // TODO: Build a trie to store the words?
-// TODO: Investigate whether N word phrases should look more like sentences.
-//       (this would obv reduce the # of combinations, since only words of
-//        certain could fill each slot).
 
 function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
@@ -88,7 +85,7 @@ function go() {
   const words: string[] = JSON.parse(buffer.toString());
 
   // Goofy memory calculations:
-  if (!false) {
+  if (false) {
     let wordListMemInBytes = 0;
     let trieMemInBytes = 0;
     for (const w of words) {
@@ -102,7 +99,7 @@ function go() {
   const totalWords = words.length;
   const equivalentBits = Math.log2(totalWords);
   let numWordsInPhrase = 1;
-  while (numWordsInPhrase <= 6) {
+  while (numWordsInPhrase <= 5) {
     const numUniquePhrases = getAbbreviatedNum(totalWords ** numWordsInPhrase);
     const numBitsForPhrase = Math.floor(equivalentBits * numWordsInPhrase);
     let examplePhraseWords: string[] = [];
