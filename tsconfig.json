@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "lib": [ "dom", "ES2023" ],
-    "module": "ES2022",
-    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "lib": [ "dom", "ES2024" ],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "bin",
     "rootDirs": [ "src" ],
-    "target": "ES2022"
+    "target": "ESNext"
   },
   "exclude": [
     "node_modules"

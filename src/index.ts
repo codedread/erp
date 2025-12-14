@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import words from '../dict/words.en.json' with { type: 'json' };
 
 // TODO: Build a trie to store the words?
 
@@ -81,9 +81,6 @@ function addWordToNode(word: string, node: Node): number {
 }
 
 function go() {
-  const buffer = fs.readFileSync('dict/words.en.json');
-  const words: string[] = JSON.parse(buffer.toString());
-
   // Goofy memory calculations:
   if (false) {
     let wordListMemInBytes = 0;

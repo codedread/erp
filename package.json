@@ -1,15 +1,15 @@
 {
   "name": "erp",
   "version": "0.0.1",
-  "dependencies": {
-    "@types/node": "^18.7.23",
-    "typescript": "^5.2.2"
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "typescript": "^5.9.3"
   },
   "main": "index.ts",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "br": "npm run build && npm run start",
-    "start": "node bin/index.js"
+    "start": "node bin/src/index.js"
   }
 }
