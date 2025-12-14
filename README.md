@@ -33,10 +33,9 @@ to ensure it is unique, if that is important.
   * Duplicate words may be present.
   * The client can choose how many words to include in the phrase.
 
-## Examples
-  * A phrase of length 1 has 640 unique phrases. (~9 bits). Example phrase: lip
-  * A phrase of length 2 has 409k unique phrases. (~18 bits). Example phrase: cult-ostrich
-  * A phrase of length 3 has 262.14M unique phrases. (~27 bits). Example phrase: turkey-over-swagger
-  * A phrase of length 4 has 167.77B unique phrases. (~37 bits). Example phrase: early-perform-ulcer-vent
-  * A phrase of length 5 has 107.37T unique phrases. (~46 bits). Example phrase: stupid-stout-dance-toss-forum
-
+## Examples Phrases
+  * Length 1 has 640 unique phrases (~9 bits). Example: ran
+  * Length 2 has 409k unique phrases (~18 bits). Example: purse-advice
+  * Length 3 has 262M unique phrases (~27 bits). Example: chest-tackle-bubble
+  * Length 4 has 167B unique phrases (~37 bits). Example: zoom-trick-form-fret
+  * Length 5 has 107T unique phrases (~46 bits). Example: action-sin-hero-shoulder-cape
