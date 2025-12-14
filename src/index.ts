@@ -1,6 +1,6 @@
 import words from '../dict/words.en.json' with { type: 'json' };
-
-// TODO: Build a trie to store the words?
+import path from 'path';
+import url from 'url';
 
 function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
@@ -37,77 +37,38 @@ function getAbbreviatedNum(n: number): string {
   return `${n}`;
 }
 
-// TODO: To properly encode a trie in minimal memory, should use a Uint8Array... Note
-// that because of our unique problem space, the max # of children for a node is 26
-// (so 5-bit keys in the children map), so a single 32-bit value can store which children
-// a given node has as well as whether it is an ending character.
-//
-// Optimized node cost:
-// - 4 bytes for flags (is-last + which children)
-// - 4 bytes for parent (32-bit pointer)
-// - 4 bytes for _each_ child (32-bit pointer)
-interface Node {
-  children?: Map<string, Node>;
-  isLastChar: boolean;
-  parent: Node;
+/**
+ * Returns an Ephemeral Random Phrase with numberOfWords in it.
+ */
+export function getERP(numberOfWords: number = 3): string {
+  if (numberOfWords <= 0 || numberOfWords > 100) {
+    throw new Error('Invalid number of words');
+  }
+
+  let phrase: string[] = [];
+  for (let i = 0; i < numberOfWords; ++i) {
+    phrase.push(words[getRandomInt(words.length)]);
+  }
+  return phrase.join('-');
 }
 
-let root: Node = {isLastChar: false, parent: null};
-let leaves: Node[] = [];
-let numNodes = 1;
-
-/** Returns the number of bytes added to memory for this word. */
-function addWordToNode(word: string, node: Node): number {
-  const ch = word[0];
-  const isLastChar = word.length === 1;
-  let memBytes = 0;
-
-  if (!node.children) {
-    node.children = new Map<string, Node>();
-  }
-  if (!node.children.has(ch)) {
-    node.children.set(ch, {parent: node, isLastChar});
-    numNodes++;
-    memBytes += 12; // Parent pointer + Flags + Child-for-parent pointer
-  }
-  let chNode = node.children.get(ch);
-  if (!isLastChar) {
-    memBytes += addWordToNode(word.slice(1), chNode);
-  } else {
-    chNode.isLastChar = true;
-    leaves.push(chNode);
-  }
-  return memBytes;
-}
-
-function go() {
-  // Goofy memory calculations:
-  if (false) {
-    let wordListMemInBytes = 0;
-    let trieMemInBytes = 0;
-    for (const w of words) {
-      wordListMemInBytes += w.length + 1;
-      trieMemInBytes += addWordToNode(w, root);
-    }
-    console.log(`\nFlat word list takes up ${wordListMemInBytes} bytes.`);
-    console.log(`Trie has ${numNodes} nodes and would take up ${trieMemInBytes} bytes.\n`);
-  }
-
+function info() {
   const totalWords = words.length;
   const equivalentBits = Math.log2(totalWords);
   let numWordsInPhrase = 1;
   while (numWordsInPhrase <= 5) {
     const numUniquePhrases = getAbbreviatedNum(totalWords ** numWordsInPhrase);
     const numBitsForPhrase = Math.floor(equivalentBits * numWordsInPhrase);
-    let examplePhraseWords: string[] = [];
-    for (let i = 0; i < numWordsInPhrase; ++i) {
-      examplePhraseWords.push(words[getRandomInt(totalWords)]);
-    }
+    const phrase = getERP(numWordsInPhrase);
 
     console.log(`    * For a phrase of length ${numWordsInPhrase}, there are ${numUniquePhrases} unique phrases. `
-       + `(~${numBitsForPhrase} bits). Example phrase: ${examplePhraseWords.join('-')}`);
+       + `(~${numBitsForPhrase} bits). Example phrase: ${phrase}`);
     ++numWordsInPhrase;
   }
 }
 
-go();
+const currentFilePath = url.fileURLToPath(import.meta.url);
+const mainFilePath = path.resolve(process.argv[1]);
+if (currentFilePath === mainFilePath) {
+   info();
+}
