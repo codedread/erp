@@ -38,7 +38,9 @@ function getAbbreviatedNum(n: number): string {
 }
 
 /**
- * Returns an Ephemeral Random Phrase with numberOfWords in it.
+ * Returns an Ephemeral Random Phrase with numberOfWords in it. This method has
+ * no memory of previous calls. It is up to the client to ensure uniqueness if
+ * that is important.
  */
 export function getERP(numberOfWords: number = 3): string {
   if (numberOfWords <= 0 || numberOfWords > 100) {
@@ -61,12 +63,13 @@ function info() {
     const numBitsForPhrase = Math.floor(equivalentBits * numWordsInPhrase);
     const phrase = getERP(numWordsInPhrase);
 
-    console.log(`    * For a phrase of length ${numWordsInPhrase}, there are ${numUniquePhrases} unique phrases. `
+    console.log(`  * A phrase of length ${numWordsInPhrase} has ${numUniquePhrases} unique phrases. `
        + `(~${numBitsForPhrase} bits). Example phrase: ${phrase}`);
     ++numWordsInPhrase;
   }
 }
 
+// If we are running this module locally, print out information.
 const currentFilePath = url.fileURLToPath(import.meta.url);
 const mainFilePath = path.resolve(process.argv[1]);
 if (currentFilePath === mainFilePath) {

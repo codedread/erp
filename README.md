@@ -1,32 +1,42 @@
 # Ephemeral Random Phrases… ERPs?
 
 A UUID has 122-bits that make it cryptographically "unique enough". But unfortunately it is
-completely unpronounceable and impossible to remember. Actually these are features of a UUID
-so that it can't be guessed...
+completely unpronounceable and impossible to remember.
 
-... but how far could we get generating random phrases of English words?
+Some applications may just want a human-readable, pronounceable identifier for an ephemeral resource
+(like a gaming session, a set of sharable files, etc).
 
-The goal is a random phrase picked from a large list of english words between 3-8 characters long,
-none of which have homonyms. This will allow the phrase to easily be said verbally to a person
-such that they might be able to remember it, but also extremely likely to be unique.
+`getERP()` returns a random phrase picked from a large list of words between 3-8 characters long,
+none of which have homophones. This will allow the phrase to easily be said verbally to a person
+such that they might be able to remember it, but also likely to be unique. It is up to the client
+to ensure it is unique, if that is important.
+
+# Code
+
+```javascript
+  import { getERP } from '@codedread/erp';
+
+  getERP(4); // e.g. "quiz-anvil-zany-such"
+```
+
+# More Info
 
 ## The Word List
 
-  * 3-8 characters long for now
-  * word cannot be easily mistaken for another word when spoken out loud
-  * word should be common and spellable by most English-speaking people
-  * should plurals be allowed?
+  * Words are 3-8 characters long.
+  * Words are common and spellable by most people.
+  * Words cannot be easily mistaken for another word when spoken aloud (monophones).
 
 ## The Phrase
 
-  * For now, it is unclear how long the word list and phrase needs to be if we want 122-bits
-    of randomness, but I think an ideal spot for memory is between 3 and 5 words long.
-  * Duplicate words are allowed.
+  * Words are separated by hypens (-).
+  * Duplicate words may be present.
+  * The client can choose how many words to include in the phrase.
 
-  * Results:
-    * For a phrase of length 1, there are 512 unique phrases. (~9 bits). Example phrase: wag
-    * For a phrase of length 2, there are 262k unique phrases. (~18 bits). Example phrase: square-set
-    * For a phrase of length 3, there are 134.21M unique phrases. (~27 bits). Example phrase: bank-random-wiggle
-    * For a phrase of length 4, there are 68.71B unique phrases. (~36 bits). Example phrase: swagger-choke-alphabet-example
-    * For a phrase of length 5, there are 35.18T unique phrases. (~45 bits). Example phrase: villain-gas-captain-taste-villain
-    * For a phrase of length 6, there are 18.01Qa unique phrases. (~54 bits). Example phrase: grass-rock-wipe-spring-rancid-map
+## Examples
+  * A phrase of length 1 has 640 unique phrases. (~9 bits). Example phrase: lip
+  * A phrase of length 2 has 409k unique phrases. (~18 bits). Example phrase: cult-ostrich
+  * A phrase of length 3 has 262.14M unique phrases. (~27 bits). Example phrase: turkey-over-swagger
+  * A phrase of length 4 has 167.77B unique phrases. (~37 bits). Example phrase: early-perform-ulcer-vent
+  * A phrase of length 5 has 107.37T unique phrases. (~46 bits). Example phrase: stupid-stout-dance-toss-forum
+
