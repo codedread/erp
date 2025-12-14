@@ -1,5 +1,5 @@
 {
-  "name": "erp",
+  "name": "@codedread/erp",
   "version": "1.0.0",
   "devDependencies": {
     "@types/node": "^24.1.0",
