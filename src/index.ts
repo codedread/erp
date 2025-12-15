@@ -1,6 +1,4 @@
 import words from '../dict/words.en.json' with { type: 'json' };
-import path from 'path';
-import url from 'url';
 
 /**
  * Returns an Ephemeral Random Phrase with numberOfWords in it. This method has
@@ -23,6 +21,7 @@ function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
 }
 
+// TODO(codedread): Move these functions into a separate utility
 function getAbbreviatedNum(n: number): string {
   if (n < 10_000) {
     return `${n}`;
@@ -54,7 +53,6 @@ function getAbbreviatedNum(n: number): string {
   return `${n}`;
 }
 
-
 function info() {
   const totalWords = words.length;
   const equivalentBits = Math.log2(totalWords);
@@ -68,11 +66,4 @@ function info() {
        + `(~${numBitsForPhrase} bits). Example: ${phrase}`);
     ++numWordsInPhrase;
   }
-}
-
-// If we are running this module locally, print out information.
-const currentFilePath = url.fileURLToPath(import.meta.url);
-const mainFilePath = path.resolve(process.argv[1]);
-if (currentFilePath === mainFilePath) {
-   info();
 }

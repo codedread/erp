@@ -1,6 +1,6 @@
 {
   "name": "@codedread/erp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Jeff Schiller",
   "devDependencies": {
     "@types/node": "^24.1.0",
@@ -23,8 +23,6 @@
   "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "br": "npm run build && npm run start",
-    "prepublishOnly": "npm run build",
-    "start": "node dist/src/index.js"
+    "prepublishOnly": "npm run build"
   }
 }
