@@ -1,9 +1,17 @@
 {
   "name": "@codedread/erp",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "author": "Jeff Schiller",
   "devDependencies": {
     "@types/node": "^24.1.0",
     "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js", 
+      "default": "./dist/src/index.js"
+    }
   },
   "files": [
     "dist/",
@@ -12,7 +20,7 @@
   ],
   "main": "dist/src/index.js",
   "type": "module",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
     "br": "npm run build && npm run start",
